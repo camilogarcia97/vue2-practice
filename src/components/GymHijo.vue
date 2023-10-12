@@ -1,15 +1,26 @@
 <template>
   <div class="hijo">
+    <h3>
+      Numero de prueba usando store(vuex): {{ $store.state.numeroDePruebaVuex }}
+    </h3>
     <h1>Gym Hijo</h1>
     <h2>{{ np }}</h2>
     <br />
     <h6>Aumentar numero en padre</h6>
     <button @click="subirHijo">+</button>
     <button @click="bajarHijo">-</button>
+    <br />
+    <!-- esta es la forma "larga" de usar un metodo desde a store
+    $store.commit('aumentarGlobal') -->
+    <button @click="$store.commit('aumentarGlobal')">@</button>
+    <!-- esta es la forma abreviada de usar un metodo desde a store
+    @click="aumentarGlobal" y la forma de hacerlo es usando una computada con la mapMutation(['NombreDeLaVariable']) -->
+    <button @click="aumentarGlobal">@</button>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 /* import */
 export default {
   name: "GymHijo",
@@ -18,6 +29,27 @@ export default {
   data() {
     return {
       numeroHijo: 0,
+      nombre: "el camus",
+      trainers: [
+        {
+          nombre: "BigBang",
+          edad: 18,
+          altura: 1.75,
+          peso: 70,
+        },
+        {
+          nombre: "Alfa",
+          edad: 25,
+          altura: 1.85,
+          peso: 80,
+        },
+        {
+          nombre: "Manba Negra",
+          edad: 35,
+          altura: 1.81,
+          peso: 105,
+        },
+      ],
     };
   },
 
@@ -31,6 +63,13 @@ export default {
       this.numeroHijo--;
       this.$emit("enviando", this.numeroHijo);
     },
+
+    ...mapMutations(["aumentarGlobal"]),
+  },
+
+  mounted() {
+    this.$emit("sendingName", this.nombre);
+    this.$emit("sendingTrainer", this.trainers);
   },
 
   computed: {},

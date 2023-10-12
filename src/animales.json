@@ -1,0 +1,29 @@
+{
+    "animales_exoticos": [
+      {
+        "nombre": "Ziggy",
+        "especie": "Loro Araña",
+        "color": "Verde y Rojo",
+        "edad": 5
+      },
+      {
+        "nombre": "Luna",
+        "especie": "Mapache Albino",
+        "color": "Blanco",
+        "edad": 2
+      },
+      {
+        "nombre": "Kai",
+        "especie": "Dragón Barbudo",
+        "color": "Marrón y Amarillo",
+        "edad": 4
+      },
+      {
+        "nombre": "Zara",
+        "especie": "Leopardo de las Nieves",
+        "color": "Blanco y Gris",
+        "edad": 6
+      }
+    ]
+  }
+  

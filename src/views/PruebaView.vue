@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <pruebaComponent></pruebaComponent>
+    <TablaPincipal></TablaPincipal>
   </div>
 </template>
 

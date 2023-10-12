@@ -1,18 +1,42 @@
 <template>
   <div class="padre">
+    <h3>
+      <!-- esta es la forma "larga" de usar un state desde la store
+    $store.state.numeroDePruebaVuex -->
+      usando store(vuex) forma larga:
+      {{ $store.state.numeroDePruebaVuex }}
+    </h3>
+    <h4>
+      <!--  -->
+      usando store(vuex) forma corta: {{ numeroDePruebaVuex }}
+    </h4>
     <h1>Gym Padre</h1>
+    <h2>{{ nombre }}</h2>
     <h2>{{ numeroHijo }}</h2>
     <br />
     <h6>Aumentar numero en hijo</h6>
     <button @click="subirPadre">+</button>
     <button @click="bajarPadre">-</button>
-    <GymHijo :np="numeroPadre" @enviando="numeroHijo = $event"></GymHijo>
+    <h4>{{ message }}</h4>
+    <h5 v-for="(trainer, i) of trainers" :key="i">
+      Nombre: {{ trainer.nombre }}
+      <br />
+      Edad: {{ trainer.edad }}
+      <br />
+      peso(kg): {{ trainer.peso }}
+    </h5>
+    <GymHijo
+      :np="numeroPadre"
+      @enviando="numeroHijo = $event"
+      @sendingName="nombre = $event"
+      @sendingTrainer="trainers = $event"
+    ></GymHijo>
   </div>
 </template>
 
 <script>
 import GymHijo from "@/components/GymHijo.vue";
-/* import */
+import { mapState } from "vuex";
 export default {
   components: { GymHijo },
   name: "GymPadre",
@@ -21,6 +45,10 @@ export default {
     return {
       numeroPadre: 0,
       numeroHijo: 0,
+      message: "Esta lista de objetos vienes desde el componente hijo 👌",
+
+      nombre: "",
+      trainers: [],
     };
   },
 
@@ -34,7 +62,9 @@ export default {
     },
   },
 
-  computed: {},
+  computed: {
+    ...mapState(["numeroDePruebaVuex"]),
+  },
 };
 </script>
 
@@ -43,7 +73,6 @@ export default {
 .padre {
   /* campo de texto */
   width: 420px;
-  height: 660px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
